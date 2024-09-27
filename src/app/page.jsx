@@ -24,7 +24,7 @@ export default function Home() {
             <Link href="/cuentas">
               <div className="bg-gray-100 p-4 rounded shadow">
                 <div>Tarjeta de crédito</div>
-                <div className="font-mono">**** **** **** 7526</div>
+                <div className="font-mono">**** **** **** 7525</div>
               </div>
               <div className="bg-gray-100 mt-4 p-4 rounded shadow">
                 <div>Tarjeta de débito</div>
