@@ -1,6 +1,7 @@
+"use client"
+
 // pages/pagar.js
 import { useState } from 'react';
-
 const PagarFacturas = () => {
   const [nombreServicio, setNombreServicio] = useState('');
   const [monto, setMonto] = useState('');
@@ -9,7 +10,7 @@ const PagarFacturas = () => {
   const manejarPago = (e) => {
     e.preventDefault();
     // Aquí puedes agregar la lógica para procesar el pago
-    setMensaje(Pago de ${monto} para ${nombreServicio} procesado.);
+    setMensaje(`Pago de ${monto} para ${nombreServicio} procesado.`);
     setNombreServicio('');
     setMonto('');
   };
