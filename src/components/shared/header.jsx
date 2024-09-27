@@ -41,7 +41,7 @@ const Header = ({ toggleSidebar }) => {
             variant: "outline",
           })} bg-transparent`}
         >
-          <FaUser /> <span className="ml-2">{user?.firstname} {user?.lastname}</span>
+          <FaUser /><span className="ml-2">{user?.firstname} {user?.lastname}</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>
