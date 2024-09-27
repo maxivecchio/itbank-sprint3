@@ -1,39 +1,40 @@
-import React from 'react'
-import Link from 'next/link'
-import { Button, buttonVariants } from '@/components/ui/button'
+"use client";
 
-const Cuentas = () => {
-  return (
-    <main className="container mx-auto p-4 bg-gray-100 rounded-lg">
-      <div className="dashboard max-w-[900px] mx-auto ml-0 text-left">
-        <div>
-          <h1 className="text-2xl font-bold mb-6">Mis Cuentas</h1>
-        </div>
+import {useBankAccounts} from '@/lib/hooks/useBankAccounts';
+import Link from 'next/link';
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Button} from "@/components/ui/button";
+import {Skeleton} from "@/components/ui/skeleton";
 
-        <div className="accounts-section max-w-lg mx-auto p-4 ml-0">
-          <div className="account-card bg-white rounded-lg shadow-md mb-5 p-5">
-            <h2 className="text-lg font-semibold">Cuenta Corriente</h2>
-            <div className="saldotransacciones mb-4">
-              <p className="my-1">Saldo: $1,250</p>
-              <p className="my-1">Última transacción: $-50.00</p>
+export default function AccountsPage() {
+    const [accounts] = useBankAccounts();
+
+    return (
+        <div className="container mx-auto p-6">
+            <h1 className="text-3xl font-bold mb-6">Lista de Cuentas Bancarias</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {accounts?.length > 0 ? accounts.map((account) => (
+                    <Card key={account.id} className="shadow-lg">
+                        <CardHeader>
+                            <CardTitle>{account.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-lg font-semibold text-gray-700">
+                                Saldo: <span className="text-green-600">${account.balance}</span>
+                            </p>
+                            <Link href={`/cuentas/${account.id}`}>
+                                <Button className="mt-4 w-full" variant="default">
+                                    Ver Detalles
+                                </Button>
+                            </Link>
+                        </CardContent>
+                    </Card>
+                )) :
+                [...Array(3)].map((_, index) => (
+                    <Skeleton className={"h-44"} key={index} />
+                ))
+                }
             </div>
-            <Link className={buttonVariants()} href="/transferencias">
-               Ver Detalles de Transacciones
-            </Link>
-          </div>
-
-          <div className="account-card bg-white rounded-lg shadow-md mb-5 p-5">
-            <h2 className="text-lg font-semibold">Cuenta de Ahorros</h2>
-            <p className="my-1">Saldo: $5,789</p>
-            <p className="my-1">Última transacción: $+200.00</p>
-            <Link className={buttonVariants()} href="/transferencias">
-               Ver Detalles de Transacciones
-            </Link>
-          </div>
         </div>
-      </div>
-    </main>
-  )
+    );
 }
-
-export default Cuentas

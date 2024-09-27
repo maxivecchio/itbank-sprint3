@@ -10,11 +10,17 @@ export const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const storedUser = Cookies.get("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
+        const fetchUser = async () => {
+            const res = await fetch("/api/session");
+            if (res.ok) {
+                const userData = await res.json();
+                setUser(userData.user);
+            }
+        };
+
+        fetchUser();
     }, []);
+
 
     const login = async (username, password) => {
         try {
@@ -29,8 +35,8 @@ export const UserProvider = ({children}) => {
             if (res.ok) {
                 const userData = await res.json();
                 toast.success("Sesión iniciada correctamente.");
-                setUser(userData);
-                Cookies.set("user", JSON.stringify(userData), {expires: 7});
+                setUser(userData.user);
+                Cookies.set("user", JSON.stringify(userData.user), {expires: 7});
                 return true;
             } else {
                 const errorData = await res.json();

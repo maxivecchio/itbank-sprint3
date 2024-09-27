@@ -7,7 +7,7 @@ export async function POST(request) {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        const response = NextResponse.json({ message: 'Login successful' });
+        const response = NextResponse.json({ message: 'Login successful', user});
 
         response.headers.set('Set-Cookie', `user=${JSON.stringify(user)}; Path=/; HttpOnly; Secure=${process.env.NODE_ENV === 'production'}; Max-Age=86400`);
 

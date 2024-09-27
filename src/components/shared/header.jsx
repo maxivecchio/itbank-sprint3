@@ -19,7 +19,6 @@ import { Button, buttonVariants } from "@/components/ui/button";
 
 const Header = ({ toggleSidebar }) => {
   const { user, logout } = useUser();
-
   return (
     <header className="fixed w-full z-50 p-3 bg-[#1a1a1a] h-14 flex items-center justify-between	 text-white">
       <div className="flex items-center">
