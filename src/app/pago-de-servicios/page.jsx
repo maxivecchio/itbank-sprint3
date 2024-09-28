@@ -16,12 +16,13 @@ const PagarFacturas = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Pagar Facturas de Servicios</h1>
+    <div className= "bg-white shadow-lg rounded-sm text-black"style={{ padding: '15px', width:'400px', margin:'0px'}}>
+      <h1>Pagar Facturas de Servicios </h1>
       <form onSubmit={manejarPago}>
-        <div>
+        <div style={{margin:'10px'}}>
           <label htmlFor="nombreServicio">Nombre del Servicio:</label>
           <input
+          className=' rounded-sm border-2 border-cyan-950'
             type="text"
             id="nombreServicio"
             value={nombreServicio}
@@ -29,9 +30,10 @@ const PagarFacturas = () => {
             required
           />
         </div>
-        <div>
+        <div style={{margin:'10px'}}>
           <label htmlFor="monto">Monto a Pagar:</label>
           <input
+          className=' rounded-sm border-2 border-cyan-950'
             type="number"
             id="monto"
             value={monto}
@@ -39,7 +41,7 @@ const PagarFacturas = () => {
             required
           />
         </div>
-        <button type="submit">Pagar</button>
+        <button className="bg-primary text-white hover:bg-sky-900  rounded-sm"type="submit">Pagar</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
     </div>
