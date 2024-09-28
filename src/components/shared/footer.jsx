@@ -7,7 +7,9 @@ const Footer = () => {
   const [showToast, setShowToast] = useState(false);
 
   const handleSubmit = () => {
-    setShowToast(true);
+    if(userMessage.length!=0){
+      setShowToast(true);
+    }
     setIsModalOpen(false);
     setUserMessage("");
   };
