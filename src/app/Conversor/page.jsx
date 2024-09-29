@@ -108,7 +108,11 @@ const Conversor = () => {
         }
     }, [dolarType]);
 
-    console.log(dolarOptions);
+    /*console.log(dolarOptions);*/
+
+    if (!dolarOptions.length) {
+        return null;
+    }
 
     return (
         <div className="mt-10 rounded-lg">
