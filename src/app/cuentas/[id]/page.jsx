@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import {notFound, useRouter} from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {Label} from "@/components/ui/label";
+import {Skeleton} from "@/components/ui/skeleton";
 
-export default function AccountDetails({ params }) {
+export default function AccountDetails({params}) {
     const [account, setAccount] = useState(null);
     const [amount, setAmount] = useState('');
     const [targetAccountId, setTargetAccountId] = useState('');
@@ -48,6 +49,11 @@ export default function AccountDetails({ params }) {
 
             if (fromAccount.balance < transferAmount) {
                 setTransferMessage('Fondos insuficientes.');
+                return;
+            }
+
+            if (fromAccount.id === toAccount.id) {
+                setTransferMessage('No puede transferir a la misma cuenta de origen.');
                 return;
             }
 

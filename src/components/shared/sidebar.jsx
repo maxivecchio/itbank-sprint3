@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
     FaHouse,
     FaArrowRightArrowLeft,
@@ -18,6 +18,8 @@ import {
     SheetTitle,
 } from "@/components/ui/sheet";
 import {RiBillLine} from "react-icons/ri";
+import {Button} from "@/components/ui/button";
+import {LuCreditCard} from "react-icons/lu";
 
 const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
     const pathname = usePathname();
@@ -39,6 +41,11 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
             icon: <FaArrowRightArrowLeft/>,
         },
         {
+            name: "Tarjetas",
+            url: "/tarjetas",
+            icon: <LuCreditCard />,
+        },
+        {
             name: "Conversor",
             url: "/conversor",
             icon: <FaCalculator/>,
@@ -58,6 +65,25 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
         }, */
     ];
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userMessage, setUserMessage] = useState("");
+    const [showToast, setShowToast] = useState(false);
+
+    const handleSubmit = () => {
+        if(userMessage.length!=0){
+            setShowToast(true);
+        }
+        setIsModalOpen(false);
+        setUserMessage("");
+    };
+
+    useEffect(() => {
+        if (showToast) {
+            const timer = setTimeout(() => setShowToast(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [showToast]);
+
     return (
         <>
             <aside
@@ -68,6 +94,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
                         links2={links2}
                         pathname={pathname}
                         setSidebarOpen={setSidebarOpen}
+                        setIsModalOpen={setIsModalOpen}
                     />
                 </nav>
             </aside>
@@ -81,15 +108,43 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
                             links2={links2}
                             pathname={pathname}
                             setSidebarOpen={setSidebarOpen}
+                            setIsModalOpen={setIsModalOpen}
                         />
                     </div>
                 </SheetContent>
             </Sheet>
+
+            {isModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-[96%]">
+                        <h2 className="text-lg font-bold">¿Cuál es el problema?</h2>
+                        <textarea className="w-full mt-4 p-2 border rounded" rows="5" placeholder="Escriba su problema aquí..."
+                                  value={userMessage}
+                                  onChange={(e) => setUserMessage(e.target.value)}></textarea>
+                        <div className="flex justify-end mt-4">
+                            <Button
+                                variant="outline"
+                                className="mr-2"
+                                onClick={() => setIsModalOpen(false)}
+                            >
+                                Cancelar
+                            </Button>
+                            <Button onClick={handleSubmit}>Enviar</Button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showToast && (
+                <div className="fixed bottom-4 right-4 bg-green-800 text-white p-4 rounded-lg shadow-lg">
+                    Recibimos tu mensaje. Te contactaremos pronto.
+                </div>
+            )}
         </>
     );
 };
 
-const NavLinks = ({links1, links2, pathname, setSidebarOpen}) => {
+const NavLinks = ({links1, links2, pathname, setSidebarOpen, setIsModalOpen}) => {
     return (
         <>
             <div className="flex flex-col gap-1.5">
@@ -112,6 +167,16 @@ const NavLinks = ({links1, links2, pathname, setSidebarOpen}) => {
                 ))}
             </div>
             <div className="flex flex-col gap-1.5">
+                <Button
+                    className="mt-4 w-full"
+                    variant="link"
+                    onClick={() => {
+                        setSidebarOpen(false);
+                        setIsModalOpen(true)
+                    }}
+                >
+                    ¿Necesita ayuda?
+                </Button>
                 {links2.map((link, index) => (
                     <Link
                         onClick={(e) => {
