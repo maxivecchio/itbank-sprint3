@@ -30,7 +30,7 @@ function LoginForm() {
       <div className="relative flex flex-col m-6 space-y-8 bg-black shadow-2xl rounded-2xl md:flex-row md:space-y-0 w-full max-w-5xl">
         <div className="flex flex-col justify-center p-8 md:p-14 w-full md:max-w-md">
           <div className="flex">
-            <img className="h-6 w-12" src="/logo.webp" alt="Rossum Logo" />
+            <img className="h-6 w-12" src="/logo.webp" alt="Rossum Logo" loading="lazy" />
             <span className="font-bold ml-2 text-lg hidden md:inline-block text-white">
               <span className="logo_name text-white">Rossum | </span>HomeBanking
             </span>
@@ -66,6 +66,7 @@ function LoginForm() {
             src="/oficina.avif"
             alt="img"
             className="h-full w-full hidden rounded-r-2xl md:block object-cover"
+             loading="lazy"
           />
         </div>
       </div>
