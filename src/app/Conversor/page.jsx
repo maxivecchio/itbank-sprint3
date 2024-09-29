@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 
 const Conversor = () => {
+/*
     const [amountARS, setAmountARS] = useState(0);
     const [amountUSD, setAmountUSD] = useState(0);
     const [dolarType, setDolarType] = useState("");
@@ -108,15 +109,17 @@ const Conversor = () => {
         }
     }, [dolarType]);
 
-    /*console.log(dolarOptions);*/
+    /!*console.log(dolarOptions);*!/
 
     if (!dolarOptions.length) {
         return null;
     }
+*/
 
     return (
         <div className="mt-10 rounded-lg">
-            <div className="flex gap-10 flex-col-reverse lg:flex-row">
+            conv
+           {/* <div className="flex gap-10 flex-col-reverse lg:flex-row">
                 <div className="lg:max-w-xl w-full">
                     <h2 className="text-2xl font-bold mb-4 text-left">Valor del Dólar</h2>
                     <div className="gap-2.5 flex flex-col">
@@ -198,7 +201,7 @@ const Conversor = () => {
                         {error && <p className="m-0 mt-3 text-red-500">{error}</p>}
                     </div>
                 </div>
-            </div>
+            </div>*/}
         </div>
     );
 };
