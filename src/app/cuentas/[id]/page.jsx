@@ -4,9 +4,10 @@ import {useEffect, useState} from 'react';
 import {notFound, useRouter} from 'next/navigation';
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import {Label} from "@/components/ui/label";
 import {Skeleton} from "@/components/ui/skeleton";
+import Link from "next/link";
 
 export default function AccountDetails({params}) {
     const [account, setAccount] = useState(null);
@@ -78,6 +79,7 @@ export default function AccountDetails({params}) {
 
     return (
         <div className="container mx-auto p-6">
+            <Link href={"/cuentas"} className={`${buttonVariants({variant: "link"})} !p-0 `}>Volver a cuentas</Link>
             <Card className="shadow-lg max-w-lg mx-auto">
                 <CardHeader>
                     <CardTitle>{account.name}</CardTitle>
