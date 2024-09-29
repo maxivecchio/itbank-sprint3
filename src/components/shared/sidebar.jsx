@@ -20,6 +20,7 @@ import {
 import {RiBillLine} from "react-icons/ri";
 import {Button} from "@/components/ui/button";
 import {LuCreditCard} from "react-icons/lu";
+import { FaHandHoldingUsd } from "react-icons/fa";
 
 const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
     const pathname = usePathname();
@@ -54,6 +55,12 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
             name: "Pago de servicios",
             url: "/pago-de-servicios",
             icon: <RiBillLine />,
+        },
+
+        {
+            name: "Simular Prestamos",
+            url: "/calculadora",
+            icon: <FaHandHoldingUsd />
         },
     ];
 
