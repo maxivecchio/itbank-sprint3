@@ -1,8 +1,10 @@
-"use client"
+"use client";
 
 import React, {createContext, useState, useContext, useEffect} from "react";
 import Cookies from "js-cookie";
 import {toast} from "sonner";
+import axios from "axios";
+import {useRouter} from "next/navigation";
 
 const UserContext = createContext();
 
@@ -11,54 +13,50 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await fetch("/api/session");
-            if (res.ok) {
-                const userData = await res.json();
-                setUser(userData.user);
+            try {
+                const res = await axios.get("/api/session");
+                if (res.status === 200) {
+                    setUser(res.data.user);
+                }
+            } catch (error) {
+                console.error("Error fetching session:", error);
             }
         };
 
         fetchUser();
     }, []);
 
-
     const login = async (username, password) => {
         try {
-            const res = await fetch("/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({username, password}),
-            });
+            const res = await axios.post("/api/login", {username, password});
 
-            if (res.ok) {
-                const userData = await res.json();
+            if (res.status === 200) {
+                const userData = res.data;
                 toast.success("Sesión iniciada correctamente.");
                 setUser(userData.user);
                 Cookies.set("user", JSON.stringify(userData.user), {expires: 7});
                 return true;
-            } else {
-                const errorData = await res.json();
-                toast.error(errorData.message || "Usuario o contraseña incorrectos");
-                return false;
             }
         } catch (err) {
-            toast.error("Ocurrió un error inesperado. Por favor, intenta de nuevo.");
+            const errorMessage = err.response?.data?.message || "Usuario o contraseña incorrectos";
+            toast.error(errorMessage);
             return false;
         }
     };
 
+    const router = useRouter();
     const logout = async () => {
-        try {
-            const res = await fetch('/api/logout', {
-                method: 'POST',
-            });
 
-            setUser(null);
-            router.push('/login');
-            toast.success("Sesión cerrada correctamente.");
-            return true;
+        try {
+            const res = await axios.post("/api/logout");
+
+            if (res.status === 200) {
+                Cookies.remove("user");
+                setUser(null);
+                toast.success("Sesión cerrada correctamente.");
+                router.push("/login");
+                return true;
+            }
         } catch (err) {
             toast.error("Ocurrió un error inesperado. Por favor, intenta de nuevo.");
             return false;

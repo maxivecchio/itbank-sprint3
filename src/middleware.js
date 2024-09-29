@@ -15,10 +15,8 @@ export function middleware(req) {
 
   return NextResponse.next();
 }
-
-// Excluir API routes del middleware
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|logo.webp|oficina.avif|public|api).*)', 
+    '/((?!_next/static|_next/image|favicon.ico|logo.webp|oficina.avif|public|api).*)',
   ],
 };
