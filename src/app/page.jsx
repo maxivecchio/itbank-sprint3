@@ -1,5 +1,3 @@
-import {Button} from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link"
 import {Component as GastosAnual} from "@/components/shared/bar-chart";
 import {Component as GraficoGastos} from "@/components/shared/radial-chart";
