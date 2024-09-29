@@ -1,8 +1,8 @@
 "use client";
 import { usePathname } from "next/navigation";
-import Footer from "../components/shared/Footer";
-import Header from "../components/shared/Header";
-import Sidebar from "../components/shared/Sidebar";
+import Footer from "@/components/shared/footer";
+import Header from "@/components/shared/header";
+import Sidebar from "@/components/shared/sidebar";
 import { useState } from "react";
 
 export const LayoutProvider = ({ children }) => {
