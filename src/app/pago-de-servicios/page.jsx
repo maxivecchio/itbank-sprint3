@@ -147,7 +147,7 @@ const PaymentSection = () => {
           )}
 
           <p className="mt-6 text-center text-gray-500 dark:text-gray-400 sm:mt-8 lg:text-left">
-            Pago procesado por <a href="#" className="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">Tu Empresa</a>
+            Pago procesado por <a href="#" className="font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">Rossum Pagos</a>
           </p>
         </div>
       </div>
