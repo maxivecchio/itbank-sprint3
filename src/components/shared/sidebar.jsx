@@ -46,8 +46,8 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
             icon: <LuCreditCard />,
         },
         {
-            name: "Conversor",
-            url: "/conversor",
+            name: "Calculadora Dólar",
+            url: "/calculadora",
             icon: <FaCalculator/>,
         },
         {
