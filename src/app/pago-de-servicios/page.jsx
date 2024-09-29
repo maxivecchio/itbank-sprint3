@@ -13,9 +13,9 @@ const PaymentSection = () => {
   const [loading, setLoading] = useState(false);
 
   const invoices = [
-    { id: 1, description: 'Servicio de Internet', amount: 50.00, dueDate: '30/09/2024' },
-    { id: 2, description: 'Servicio de Agua', amount: 30.00, dueDate: '05/10/2024' },
-    { id: 3, description: 'Servicio de Luz', amount: 40.00, dueDate: '15/10/2024' },
+    { id: 1, description: 'Servicio de Internet', amount: 50000.00, dueDate: '30/09/2024' },
+    { id: 2, description: 'Servicio de Agua', amount: 17500.00, dueDate: '05/10/2024' },
+    { id: 3, description: 'Servicio de Luz', amount: 22000.00, dueDate: '15/10/2024' },
   ];
 
   const totalAmount = selectedInvoice ? selectedInvoice.amount : 0;

@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 
 const defaultTarjetas = [
-    { id: '1', nombre: 'Tarjeta Visa', limite: 20000, deuda: 5000 },
-    { id: '2', nombre: 'Tarjeta MasterCard', limite: 15000, deuda: 3000 },
-    { id: '3', nombre: 'Tarjeta American Express', limite: 30000, deuda: 10000 },
+    { id: '1', nombre: 'Tarjeta Visa', limite: 2000000, deuda: 500000 },
+    { id: '2', nombre: 'Tarjeta MasterCard', limite: 500000, deuda: 45000 },
+    { id: '3', nombre: 'Tarjeta American Express', limite: 3000000, deuda: 1500000 },
 ];
 
 export function useTarjetas() {

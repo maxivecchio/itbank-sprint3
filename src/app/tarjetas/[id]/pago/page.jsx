@@ -6,7 +6,7 @@ import {notFound, useRouter} from 'next/navigation';
 import {Skeleton} from "@/components/ui/skeleton";
 
 const PagoPage = ({params}) => {
-    const [tarjetas] = useTarjetas();
+    const [tarjetas, updateTarjetas ] = useTarjetas();
     const [monto, setMonto] = useState('');
     const [message, setMessage] = useState('');
     const router = useRouter();
