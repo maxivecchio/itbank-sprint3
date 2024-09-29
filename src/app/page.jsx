@@ -21,13 +21,13 @@ export default function Home() {
 
 
           <section className="col-span-4 md:col-span-2 h-full bg-white p-4 shadow rounded-xl">
-            <Link href="/cuentas">
+            <Link href="/tarjetas">
               <div className="bg-gray-100 p-4 rounded shadow">
-                <div>Tarjeta de crédito</div>
+                <div>Tarjeta VISA</div>
                 <div className="font-mono">**** **** **** 7525</div>
               </div>
               <div className="bg-gray-100 mt-4 p-4 rounded shadow">
-                <div>Tarjeta de débito</div>
+                <div>Tarjeta MasterCard</div>
                 <div className="font-mono">**** **** **** 8321</div>
               </div>
             </Link>
