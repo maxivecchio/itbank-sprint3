@@ -10,7 +10,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-const CurrencyConverter = () => {
+const Conversor = () => {
     const [amountARS, setAmountARS] = useState(0);
     const [amountUSD, setAmountUSD] = useState(0);
     const [dolarType, setDolarType] = useState("");
@@ -199,4 +199,4 @@ const CurrencyConverter = () => {
     );
 };
 
-export default CurrencyConverter;
+export default Conversor;
